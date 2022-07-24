@@ -11,40 +11,97 @@
       <title>TODO</title>
     </head>
     <body>
-       
-      <header class="head">
-        <div class="img">
-          <img src="../img/label.png">
-        </div>
-      </header>
-
-      <main>
-        <div class="active">
-          <div class="do">
-            <div class="title">
-              <img class="delete" src="../img/delete.png">
-              <div class="get_name">
-                <input type="text" placeholder="Add name!" class="get_name" maxlength="20"> 
-              </div>                                                 
-            </div>
-            <div class="table">
-              <ul class="task-list">
-                <li class="task-list-item">
-                  <label class="task-label">
-                    <input type="checkbox">
-                    <input type="text" placeholder="Write the task" class="task-text" maxlength="20"> 
-                  </label>  
-                  <span class="delete-task"></span>      
-                </li>
-              </ul> 
-              <input type="submit" class="submit-task" title="Add task" value="">             
-            </div>
-          </div> 
-          <div class="add">
-            <img class="add" src="../img/add_new.png">
-          </div>  
-        </div>
-      </main>
-
+      <div id="root">
+        <header class="head">
+          <div class="img">
+            <img src="../img/label.png">
+          </div>
+        </header>
+        <main>
+          <div class="active">
+            <todo v-for="todo in todos" v-bind:key="todo.id" v-bind:idk="todo.id">
+              <task></task>
+            </todo>
+            <div class="add" v-on:click="addTodo">
+              <img class="add" src="../img/add_new.png">
+            </div>  
+          </div>
+        </main>
+      </div> 
     </body>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.0/dist/vue.js"></script>
+
+    <script>
+      Vue.component('todo', {
+        props: ['idk'],
+        data() {
+          return {
+            id: 0,
+            todoName: "",
+            tasks: [{id: 0, task: "task"}]
+          }
+        },
+        methods: {
+          addLittleTodo() {
+            this.id = this.id + 1;
+            this.tasks.push({id: this.id, task:"name"});
+          }
+        },
+        template: `
+        <div class="do">
+          <div class="title">
+            <div class="delete-wrap" v-on:click="$root.deleteTodo(this.idk)">
+              <img class="delete" src="../img/delete.png">
+            </div>
+            <div class="get_name">
+              <input type="text" placeholder="Add name!" class="get_name" maxlength="20" v-model="todoName"> 
+            </div>                                                 
+          </div>
+          <div class="table">
+            <ul class="task-list">
+              <task v-for="task in tasks" v-bind:key="task.id"></task>
+              <input v-on:click="addLittleTodo" type="button" class="submit-task" title="Add task"> 
+            </ul>             
+          </div>
+        </div> 
+        `
+      });
+
+      Vue.component("task", {
+        props: ['idk'],
+        data() {
+          return {
+            taskName: ""
+          }
+        },
+        template: `
+        <li class="task-list-item">
+          <label class="task-label">
+            <input type="checkbox">
+            <input type="text" placeholder="Write the task" class="task-text" maxlength="20" v-model="taskName"> 
+          </label>
+          <span class="delete-task"></span>
+        </li>
+          `
+      })
+
+      var app = new Vue({
+        el: '#root',
+        data: {
+          id: 0,
+          todos: [{id: 0, todo: "name"}]
+        },
+        methods: {
+          deleteTodo(id) {
+            console.log(id)
+            this.todos.splice(id, 1);
+          },
+          addTodo() {
+            this.id = this.id + 1
+            this.todos.push({id: this.id, todo: "name"})
+          }
+        }
+      })
+    </script>
   </html>

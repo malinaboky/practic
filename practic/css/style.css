@@ -1,0 +1,138 @@
+body{
+	margin: 0 70px 0 70px;
+	background: url(../img/back.jpg) no-repeat;
+	background-attachment: fixed;
+	background-size: 100%;
+}
+
+header{
+ 	width: 100%;
+    height: 200px;
+}
+
+.img{
+    height: 60%;
+    width: 340px;
+    padding-top: 40px;
+}
+
+header img{
+	height: 100%;
+	width: 100%;
+ }
+
+
+div.do{
+	width: 308px;
+	height: 460px;
+	margin-right: 50px;
+}
+
+div.title{
+	position: relative;
+	width: 100%;
+	height: 80px;
+    background-image: url(../img/title.png);
+    background-repeat: no-repeat;
+    background-size: 100% 95%;
+    background-position: bottom;
+}
+
+img.delete{
+	width: 45px;
+	height: 45px;
+	cursor: pointer;
+}
+
+div.table {
+	position: relative;
+	width: 100%;
+	height: 385px;
+	background-image: url(../img/table.png);
+	background-repeat: no-repeat;
+	background-size: 100% 102%;
+	background-position: bottom;
+}
+
+
+div.add {
+	width: 308px;
+	height: 460px;
+}
+
+img.add {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+div.active {
+	display: flex;
+}
+
+div.get_name {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	height: 50%;
+	position: relative;
+	top: -15px;
+}
+
+input.get_name {
+	height: 100%;
+	width: 200px;
+	box-shadow: none;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    font-size: 15pt;
+    background-color: rgb(255, 255, 204, 0.6);
+    border-radius: 10px 10px 10px 10px;
+}
+
+.get_name::placeholder {
+	font-size: 15pt;
+	color: black;
+}
+
+ul {
+	margin: 0;
+}
+
+.submit-task {
+	width: 50px;
+	height: 50px;
+	flex-shrink: 0;
+	border: none;
+	background: var(--add-button);
+	background-image: url(../img/plus.png);
+	background-size: 100% 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	border-radius: 50%;
+	cursor: pointer;
+}
+
+.table {
+	display: flex;
+}
+
+.task-text{
+	box-shadow: none;
+    background-color: transparent;
+    border: none;
+}
+
+.task-text::placeholder {
+	color: black;
+}
+
+.task-list-item{
+	background-color: rgb(0, 0, 0, 0.2);
+	display: flex;
+	align-items: center;
+	padding: 8px;
+	border-radius: 10px;
+	margin-bottom: 12px;
+}

@@ -1,5 +1,5 @@
 body{
-	margin: 0 70px 0 70px;
+	margin: 0 70px 0 40px;
 	background: url(../img/back.jpg) no-repeat;
 	background-attachment: fixed;
 	background-size: 100%;
@@ -13,7 +13,8 @@ header{
 .img{
     height: 60%;
     width: 340px;
-    padding-top: 40px;
+    padding-top: 80px;
+    padding-left: 40px;
 }
 
 header img{
@@ -26,6 +27,7 @@ div.do{
 	width: 308px;
 	height: 460px;
 	margin-right: 50px;
+	margin-bottom: 100px;
 	border-radius: 30px;
 	border: 4px solid #000000;
 	background-color: white;
@@ -84,16 +86,18 @@ div.table {
 div.add {
 	width: 308px;
 	height: 460px;
+	background: rgba(217, 217, 217, 0.9);
+    border: 5px dashed #929292;
+    border-radius: 50px;
+    display: flex;
 }
 
-img.add {
-	position: relative;
-	width: 100%;
-	height: 100%;
-}
 
 div.active {
 	display: flex;
+	flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 70px;
 }
 
 div.get_name {
@@ -146,13 +150,17 @@ input.get_name {
 }
 
 .task-text{
+	position: relative;
 	box-shadow: none;
     background-color: transparent;
     border: none;
+    font-size: 16px; 
+    top: -2.5px;
 }
 
 .task-text::placeholder {
 	color: black;
+	font-size: 16px;
 }
 
 .task-list-item{
@@ -162,4 +170,81 @@ input.get_name {
 	padding: 8px;
 	border-radius: 10px;
 	margin-bottom: 12px;
+}
+
+img.delete-task {
+	height: 100%;
+	width: 100%;
+}
+
+span {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+.add-button {
+    width: 150px;
+    height: 150px;
+    border-radius: 50px;
+    position: relative;
+    z-index: 1;
+    margin: auto auto;
+    cursor: pointer;
+}
+
+
+.plus {
+	width: 100%;
+	height: 100%;
+}
+
+.plus:before {
+    content: '+';
+    color: rgba(146, 146, 146);
+    position: absolute;
+    left: 32.5px;
+    z-index: 2;
+    font-size: 150px;
+    font-family: 'Dosis';
+    line-height: 1;
+    align-content: center;
+    transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+}
+.plus:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    background: rgba(173, 173, 173, 0.3);
+    z-index: 1;
+    transition: all 0.3s cubic-bezier(0.77, 0, 0.2, 0.85);
+    transform: scale(0.01);
+}
+.plus:hover:after {
+    transform: scale(1);
+}
+.plus:hover:before {
+    transform: scale(0.8);
+    color: #fff;
+}
+
+.custom-checkbox {
+	width: 20px;
+	height: 20px;
+	border: 5px solid grey;
+}
+.custom-checkbox:hover {
+    border: 5px solid black;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    cursor: pointer;
+}
+.custom-checkbox:checked {
+    border: 5px solid grey;
+}
+.custom-checkbox:checked + .task-text{
+    text-decoration: line-through black;
 }

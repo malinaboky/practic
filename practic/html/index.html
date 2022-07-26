@@ -8,6 +8,8 @@
       <link rel = "stylesheet" href = "../css/style.css">
       <link rel = "stylesheet" href = "../css/reset.css">
 
+       <link rel="shortcut icon" href="../img/gg.png" type="image/x-icon">
+
       <title>TODO</title>
     </head>
     <body>
@@ -19,11 +21,13 @@
         </header>
         <main>
           <div class="active">
-            <todo v-for="todo in todos" v-bind:key="todo.id" v-bind:idk="todo.id">
+            <todo v-for="todo in todos" v-bind:key="todo.id" v-bind:idk="todo.id" >
               <task></task>
             </todo>
-            <div class="add" v-on:click="addTodo">
-              <img class="add" src="../img/add_new.png">
+            <div class="add">
+              <div class="add-button" v-on:click="addTodo">
+                <div class="plus"></div>
+              </div>
             </div>  
           </div>
         </main>
@@ -39,14 +43,17 @@
           return {
             id: 0,
             todoName: "",
-            tasks: [{id: 0, task: "task"}]
+            tasks: [{id: 0}]
           }
         },
         methods: {
           addLittleTodo() {
             this.id = this.id + 1;
-            this.tasks.push({id: this.id, task:"name"});
-          }
+            this.tasks.push({id: this.id});
+          },
+          deleteTask(task) {
+            this.tasks.splice(this.tasks.indexOf(task), 1);
+          }     
         },
         template: `
         <div class="do">
@@ -60,8 +67,8 @@
           </div>
           <div class="table">
             <ul class="task-list">
-              <task v-for="task in tasks" v-bind:key="task.id"></task>
-              <input v-on:click="addLittleTodo" type="button" class="submit-task" title="Add task"> 
+              <task v-for="task in tasks" v-bind:key="task.id" ref="task" @emitChildComponent="deleteTask(task)"></task>
+              <input @click="addLittleTodo" type="button" class="submit-task" title="Add task"> 
             </ul>             
           </div>
         </div> 
@@ -75,13 +82,20 @@
             taskName: ""
           }
         },
+        methods: {
+          deleteTask() {
+            this.$emit('emitChildComponent');
+          }
+        },
         template: `
         <li class="task-list-item">
           <label class="task-label">
-            <input type="checkbox">
+            <input type="checkbox" class="custom-checkbox">
             <input type="text" placeholder="Write the task" class="task-text" maxlength="20" v-model="taskName"> 
           </label>
-          <span class="delete-task"></span>
+          <span class="delete-task" @click="deleteTask">
+            <img class="delete-task" src="../img/remove.png">
+          </span>
         </li>
           `
       })
@@ -94,13 +108,19 @@
         },
         methods: {
           deleteTodo(id) {
-            console.log(id)
             this.todos.splice(id, 1);
           },
+
           addTodo() {
             this.id = this.id + 1
             this.todos.push({id: this.id, todo: "name"})
+          },
+
+          on(id) {
+            console.log('2');
+            this.todos[id].deleteTask(id);
           }
+
         }
       })
     </script>
